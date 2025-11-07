@@ -1,0 +1,141 @@
+:root {
+  /* color */
+
+  /* width, height */
+  --product-wrapper-width: 1080px;
+  --product-max-width: 200px;
+  --product-wrapper-height: 330px;
+
+  /* spacing */
+  --spacing-8px: 8px;
+  --spacing-12px: 12px;
+  --spacing-20px: 20px;
+  --spacing-40px: 40px;
+  --spacing-100px: 100px;
+
+  /* radius */
+  --radius-2px: 2px;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  padding-top: var(--spacing-100px);
+  overflow-y: auto;
+  align-items: center;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.product-wrapper {
+  display: flex;
+
+  overflow: hidden;
+  width: var(--product-wrapper-width);
+  height: var(--product-wrapper-height);
+  gap: var(--spacing-20px);
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  flex-shrink: 0;
+  height: 100%;
+  max-width: var(--product-max-width);
+}
+
+.product__thumbnail {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.product__item-name {
+  margin-top: var(--spacing-12px);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.product__info {
+  display: flex;
+  flex-direction: column;
+  height: 110px;
+}
+
+.product__price {
+  margin-top: var(--spacing-12px);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.product__add-cart-button {
+  width: 100%;
+  background-color: black;
+  border-radius: var(--radius-2px);
+  border: 1px solid black;
+  color: white;
+  padding-block: var(--spacing-8px);
+}
+
+.product__add-cart-button[data-exist="true"] {
+  width: 100%;
+  background-color: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+  outline: none;
+  color: black;
+  padding-block: var(--spacing-8px);
+}
+
+.product-navigation {
+  display: flex;
+  gap: var(--spacing-8px);
+  margin-top: var(--spacing-40px);
+  justify-content: center;
+}
+
+.product-navigation__button {
+  background-color: transparent;
+  color: #c4c4c4;
+  font-size: 30px;
+}
+
+.product-navigation__button[data-selected="true"] {
+  color: black;
+}
+
+.cart-button {
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-size: 20px;
+  border-radius: 9999px;
+  background-color: black;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  position: fixed;
+  bottom: 50px;
+  cursor: pointer;
+  right: 50px;
+  text-align: center;
+  align-content: center;
+}
