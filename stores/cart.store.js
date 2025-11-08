@@ -1,22 +1,22 @@
-import { CART_STORAGE_KEY } from "../constants/storage.js";
 import { CartRepository } from "../repositories/cart.repository.js";
-import { LocalStorage } from "../storage/local.storage.js";
 import { State } from "../utils/state.js";
+import { LocalStorage } from "../utils/storage/local-storage.js";
 
 class CartStore {
-  #repository = new CartRepository(new LocalStorage(CART_STORAGE_KEY));
+  #repository = new CartRepository(new LocalStorage());
   // getAll을 fetch로 받아오는 방식으로 변경하기
 
   state = new State({
     cartItems: [],
   });
 
-  constructor() {
-    this.#persistState();
-  }
-
   getState() {
     return this.state.value;
+  }
+
+  #update(value) {
+    this.state.value = value;
+    this.#repository.save(value);
   }
 
   setQuantity(id, quantity) {
@@ -37,7 +37,7 @@ class CartStore {
       return cartItem;
     });
 
-    this.state.value = { ...state, cartItems: newCartItems };
+    this.#update({ ...state, cartItems: newCartItems });
   }
 
   setSelected(id, selected) {
@@ -53,7 +53,7 @@ class CartStore {
       return cartItem;
     });
 
-    this.state.value = { ...state, cartItems: newCartItems };
+    this.#update({ ...state, cartItems: newCartItems });
   }
 
   setSelectedAll(selected) {
@@ -64,7 +64,7 @@ class CartStore {
       selected,
     }));
 
-    this.state.value = { ...state, cartItems: update };
+    this.#update({ ...state, cartItems: update });
   }
 
   addItem(product) {
@@ -76,7 +76,7 @@ class CartStore {
 
     const state = this.getState();
 
-    this.state.value = { ...state, cartItems: [...state.cartItems, cartItem] };
+    this.#update({ ...state, cartItems: [...state.cartItems, cartItem] });
   }
 
   removeItem(itemNo) {
@@ -86,21 +86,13 @@ class CartStore {
       (item) => item.product.item_no !== itemNo
     );
 
-    this.state.value = { ...state, cartItems: filtered };
+    this.#update({ ...state, cartItems: filtered });
   }
 
   fetch() {
-    const state = this.getState();
-
     const cartItems = this.#repository.getAll();
 
-    this.state.value = { ...state, cartItems };
-  }
-
-  #persistState() {
-    this.state.subscribe(() => {
-      this.#repository.save(this.state.value.cartItems);
-    });
+    this.#update({ ...this.getState(), cartItems });
   }
 }
 
