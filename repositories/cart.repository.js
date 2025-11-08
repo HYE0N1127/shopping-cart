@@ -4,16 +4,17 @@ import { CART_STORAGE_KEY } from "../constants/storage.js";
 // new CartRepository(new LocalStorage())
 
 export class CartRepository {
+  #storage;
+
+  constructor(storage) {
+    this.#storage = storage;
+  }
+
   save(cartItems) {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+    this.#storage.setItem(CART_STORAGE_KEY, cartItems);
   }
 
   getAll() {
-    try {
-      return JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "[]");
-    } catch {
-      console.log("failed to get, return empty array");
-      return [];
-    }
+    return this.#storage.getAll(CART_STORAGE_KEY);
   }
 }

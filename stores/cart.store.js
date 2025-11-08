@@ -1,8 +1,9 @@
 import { CartRepository } from "../repositories/cart.repository.js";
+import { LocalStorage } from "../storage/local.storage.js";
 import { State } from "../utils/state.js";
 
 class CartStore {
-  #repository = new CartRepository();
+  #repository = new CartRepository(new LocalStorage());
   // getAll을 fetch로 받아오는 방식으로 변경하기
 
   state = new State({
