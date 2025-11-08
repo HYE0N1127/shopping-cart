@@ -46,7 +46,7 @@ export class PaymentContentComponent extends Component {
 
   #getTotalPrice(cartItems) {
     return cartItems.reduce((prev, curr) => {
-      if (curr.product.selected === false) {
+      if (curr.selected === false) {
         return prev;
       }
 
