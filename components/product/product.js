@@ -17,6 +17,7 @@ export class ProductComponent extends Component {
       </a>
     `);
 
+    cartStore.fetch();
     cartStore.state.subscribe(() => this.#bind(product));
 
     this.#bind(product);
@@ -68,6 +69,7 @@ export class ProductComponent extends Component {
       }
 
       cartStore.addItem(product);
+      cartStore.fetch();
     };
   }
 }

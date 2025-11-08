@@ -93,6 +93,7 @@ export class CartItemComponent extends Component {
       }
 
       cartStore.setQuantity(item.product.item_no, item.quantity - 1);
+      cartStore.fetch();
     };
 
     quantityPlusEl.onclick = () => {
@@ -101,6 +102,7 @@ export class CartItemComponent extends Component {
       }
 
       cartStore.setQuantity(item.product.item_no, item.quantity + 1);
+      cartStore.fetch();
     };
 
     const totalPriceEl = this.element.querySelector(".cart-item__total-price");

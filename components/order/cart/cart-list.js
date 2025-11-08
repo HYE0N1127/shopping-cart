@@ -9,6 +9,8 @@ export class CartListComponent extends RepaintableComponent {
 
     this.#cartItemConstructor = cartItemConstructor;
 
+    cartStore.fetch();
+
     cartStore.state.subscribe(() => this.#bind());
 
     this.#bind();
@@ -16,7 +18,6 @@ export class CartListComponent extends RepaintableComponent {
 
   #bind() {
     this.cleanup();
-
     const { cartItems } = cartStore.getState();
 
     cartItems.forEach((cartItem) => {

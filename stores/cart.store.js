@@ -3,9 +3,10 @@ import { State } from "../utils/state.js";
 
 class CartStore {
   #repository = new CartRepository();
+  // getAll을 fetch로 받아오는 방식으로 변경하기
 
   state = new State({
-    cartItems: this.#repository.get(),
+    cartItems: [],
   });
 
   constructor() {
@@ -84,6 +85,14 @@ class CartStore {
     );
 
     this.state.value = { ...state, cartItems: filtered };
+  }
+
+  fetch() {
+    const state = this.getState();
+
+    const cartItems = this.#repository.getAll();
+
+    this.state.value = { ...state, cartItems };
   }
 
   #persistState() {
