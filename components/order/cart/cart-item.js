@@ -3,7 +3,7 @@ import { Component } from "../../component.js";
 
 export class CartItemComponent extends Component {
   constructor(item) {
-    const layout = `
+    super(`
       <li class="cart-item">
         <div class="cart-selector">
           <input type="checkbox" class="cart-item__checkbox" />
@@ -38,8 +38,7 @@ export class CartItemComponent extends Component {
           <p class="cart-item__total-price">240,000원</p>
         </div>
       </li>
-    `;
-    super(layout);
+    `);
 
     cartStore.state.subscribe(() => this.#bind(item));
 
@@ -69,6 +68,7 @@ export class CartItemComponent extends Component {
     productPriceEl.textContent = `${item.product.price.toLocaleString(
       "ko-KR"
     )}원`;
+
     if (item.product.availableCoupon === false) {
       productCouponNotApplyEl.style.display = "block";
     } else {

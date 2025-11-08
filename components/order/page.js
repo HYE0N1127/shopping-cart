@@ -11,6 +11,7 @@ export class PageItemComponent extends Component {
     });
   }
 }
+
 export class PageComponent extends Component {
   #pageItemConstructor;
 

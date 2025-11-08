@@ -1,4 +1,3 @@
-import { coupons } from "../mocks/coupons.js";
 import { CouponRepository } from "../repositories/coupon.repository.js";
 import { State } from "../utils/state.js";
 

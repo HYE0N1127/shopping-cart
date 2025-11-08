@@ -1,5 +1,3 @@
-"use strict";
-
 import { CartHeaderComponent } from "../../components/order/cart/cart-header.js";
 import { CartItemComponent } from "../../components/order/cart/cart-item.js";
 import { CartListComponent } from "../../components/order/cart/cart-list.js";

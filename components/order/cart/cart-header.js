@@ -3,7 +3,7 @@ import { Component } from "../../component.js";
 
 export class CartHeaderComponent extends Component {
   constructor() {
-    const header = `
+    super(`
       <div class="cart-header">
         <div class="cart-selector">
           <input type="checkbox" class="cart-item__checkbox cart-item__check-all" />
@@ -18,9 +18,7 @@ export class CartHeaderComponent extends Component {
           <span class="cart-header__title">주문 금액</span>
         </div>
       </div>
-    `;
-
-    super(header);
+    `);
 
     cartStore.state.subscribe(() => this.#bind());
 

@@ -3,7 +3,7 @@ import { ProductsComponent } from "../../components/product/products.js";
 import { PaginationComponent } from "../../components/product/pagination.js";
 import { PaginationItemComponent } from "../../components/product/pagination-item.js";
 
-class App {
+class ProductPage {
   constructor(root) {
     new ProductsComponent(ProductComponent).attachTo(root, "afterbegin");
 
@@ -14,4 +14,4 @@ class App {
   }
 }
 
-new App(document.getElementById("root"));
+new ProductPage(document.getElementById("root"));

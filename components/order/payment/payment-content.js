@@ -4,7 +4,7 @@ import { Component } from "../../component.js";
 
 export class PaymentContentComponent extends Component {
   constructor() {
-    const layout = `
+    super(`
       <div class="payment">
         <div class="payment__price payment__total-price"></div>
         <div class="payment__price payment__discount-price"></div>
@@ -12,8 +12,7 @@ export class PaymentContentComponent extends Component {
         <div class="operator minus-sign">-</div>
         <div class="operator equal-sign">=</div>
       </div>
-    `;
-    super(layout);
+    `);
 
     cartStore.state.subscribe(() => this.#bind());
     couponStore.state.subscribe(() => this.#bind());
