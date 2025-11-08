@@ -1,10 +1,32 @@
-export class LocalStorage {
-  setItem(key, items) {
-    localStorage.setItem(key, JSON.stringify(items));
+export class Storage {
+  #key;
+  #storage;
+
+  constructor(key, storage) {
+    this.#key = key;
+    this.#storage = storage;
   }
 
-  getAll(key) {
-    const item = localStorage.getItem(key) || "[]";
+  get storage() {
+    return this.#storage;
+  }
+
+  get key() {
+    return this.#key;
+  }
+}
+
+export class LocalStorage extends Storage {
+  constructor(key) {
+    super(key, localStorage);
+  }
+
+  setItem(items) {
+    this.storage.setItem(this.key, JSON.stringify(items));
+  }
+
+  getAll() {
+    const item = localStorage.getItem(this.key) || "[]";
     return this.#parse(item);
   }
 
